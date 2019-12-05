@@ -1,0 +1,97 @@
+<html>
+
+<head>
+    <script src="ProjectJS.js"></script>
+    <link rel="stylesheet" type="text/css" href="ProjectCSS.css">
+</head>
+
+<body>
+
+    <div id="header">Math Tool</div>
+
+    <div class="wrapper">
+
+
+        <div class="tab">
+            <button class="tablinks" onclick="openTab('Conversion')" id="defaultOpen">Conversion</button>
+            <button class="tablinks" onclick="openTab('NumberOutput')">NumberOutput</button>
+            <button class="tablinks" onclick="openTab('Combinatorics')">Combinatorics</button>
+            <button class="tablinks" onclick="openTab('Truth Tables')">Truth Tables</button>
+            <button class="tablinks" onclick="openTab('Random Values')">Random Values</button>
+            <button class="tablinks" onclick="openTab('Custom')">Custom</button>
+        </div>
+
+            <div class="wrapper" id="mainspace">
+                <div id="Conversion" class="tabcontent">
+                            
+                            <h3>Conversion</h3>
+                            <p>Change from one number system to another.</p>
+
+
+                            <form id="convertForm" action="convertIt">
+                                Input value:
+                                <input type="text" name="value" id="convertSource">
+                                From:
+                                <select name="fromNum">
+                                    <option value="DEC">Decimal</option>
+                                    <option value="BIN">Binary</option>
+                                    <option value="OCT">Octal</option>
+                                    <option value="HEX">Hexadecimal</option>
+                                </select>
+                                To:
+                                <select name="toNum">
+                                    <option value="DEC">Decimal</option>
+                                    <option value="BIN">Binary</option>
+                                    <option value="OCT">Octal</option>
+                                    <option value="HEX">Hexadecimal</option>
+                                </select>
+                            </form>
+                            <button onclick="conversionButton()">Calculate</button>
+                            <div id="convertResult"></div>
+
+                </div>
+                        
+                <div id="NumberOutput" class="tabcontent">
+                            <h3>NumberOutput</h3>
+                            <p>Show output tables for number systems.</p>
+                </div>
+                        
+                <div id="Combinatorics" class="tabcontent">
+                            <h3>Combinatorics</h3>
+                            <p>Create combinations and permutations.</p>
+                </div>
+
+                                        
+                <div id="Truth Tables" class="tabcontent">
+                    <h3>Truth Tables</h3>
+                    <p>This will show the truth. With CSS Grid maybe?</p>
+                    <button id="truthify" onclick="dothetruth();">Truthify!</button>
+
+                    <div id="NEGTable"></div>
+                    <div id="ANDTable">
+                    </div>
+
+                    <div id="ORTable"></div>
+                    <div id="NORTable"></div>
+                    <div id="XORTable"></div>
+                </div>
+
+                                        
+                <div id="Random Values" class="tabcontent">
+                    <h3>Random Values</h3>
+                    <p>This will be random.</p>
+                </div>
+
+                                
+                <div id="Custom" class="tabcontent">
+                    <h3>Custom</h3>
+                    <p>Here I will make it up.</p>
+                </div>
+            </div>
+
+        </div>
+
+
+</body>
+
+</html>
