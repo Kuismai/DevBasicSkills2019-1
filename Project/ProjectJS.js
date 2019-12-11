@@ -1,4 +1,4 @@
-   
+// general page functionality   
 
 window.onload = function()
 {
@@ -32,7 +32,7 @@ function openTab(tabName)
     evt.currentTarget.className += " active";
 }
 
-
+// Conversion functions
 
 function conversionButton()
 {
@@ -63,15 +63,159 @@ function conversionButton()
     document.getElementById("convertResult").innerHTML = result;
 }
 
-    function CONVERT(inputN, sys1, sys2)
-   { 
+function CONVERT(inputN, sys1, sys2)
+{ 
     var numberified = parseInt(inputN, sys1);
     console.log(numberified);
     var result = numberified.toString(sys2);
     return result;
 }
 
+// Number Output functions
 
+function outputTable()
+{
+    var basicTable = [];
+
+    //generate values
+    for (var i = 0; i < 51; i++) {
+        basicTable[i] = new Array(4);
+        basicTable[i][0] = i;
+        basicTable[i][1] = CONVERT(i, 10, 2);
+        basicTable[i][2] = CONVERT(i, 10, 8);
+        basicTable[i][3] = CONVERT(i, 10, 16);
+    }
+
+    //actual table
+
+    html = "<table><tr><th>DEC</th><th>BIN</th><th>OCT</th><th>HEX</th></tr><tr>";
+  
+    // loop through each row
+    for (var i = 0; i< basicTable.length; i++) {
+      for (var j = 0; j < 4; j++)
+      {
+          html += "<td>" + basicTable[i][j] + "</td>"
+      }
+        html += "</tr><tr>";
+
+    }
+
+    html += "</tr></table>";
+  
+    // input
+    document.getElementById("outputTable").innerHTML = html;
+
+
+
+}
+
+function clearTable()
+{
+    document.getElementById("outputTable").innerHTML = "";
+}
+
+// Combinatorics functions
+
+function disableP()
+{
+    console.log("boo");
+    var combo = document.getElementById("CorP");
+    var perm = document.getElementsByName("permutation");
+
+    if (combo.value == "permNo")
+    {
+        perm[0].setAttribute("disabled", "true");
+        perm[1].setAttribute("disabled", "true");
+        console.log("baa");
+    }
+
+    if (combo.value == "permYes")
+    {
+        perm[0].removeAttribute("disabled");
+        perm[1].removeAttribute("disabled");
+        console.log("bee");
+    }
+}
+function comboButton()
+{
+    var mainForm = document.getElementById("combinatoricsForm");
+    var permForm = document.getElementById("permChecked");
+    var range = document.getElementById("comboRange").value;
+    var sample = document.getElementById("comboSample").value;
+    var choice = document.getElementById("CorP");
+    var result = 1;
+
+    if (choice.value == "permYes")
+    {
+        console.log("permutating");
+        console.log(permForm.elements.permutation.value);
+        if (permForm.elements.permutation.value == "repeat")
+            {
+                for (i = 0; i < sample; i ++)
+                    {
+                        result *= range;
+                        console.log("wtf");
+                    }
+                console.log("yes i'm counting");
+            }
+        else
+        {
+           var diff = range - sample;
+
+           if (diff < 0)
+           {
+               alert("Sample larger than range");
+           }
+
+           else
+           {
+               var m = factorial(range);
+               var n = factorial(diff);
+               result = m / n;
+           }
+        }
+        
+        
+    }
+
+    if (choice.value == "permNo")
+    {
+        var diff = range - sample;
+        var m = factorial(range);
+        var n = factorial(sample);
+        var d = factorial(diff);
+
+        result = m / (n * d);
+    }
+
+    document.getElementById("comboResult").innerHTML = result;
+
+}
+
+function factorial(num)
+{
+    if (num < 0)
+    {
+        return -1;
+    }
+
+    else if (num == 0 || num == 1)
+    {
+        return 1;
+    }
+
+    else
+    {
+        for (var i = num - 1; i >= 1; i --)
+        {
+            num = num * i;
+        }
+        return num;
+    }
+
+}
+
+// Truth Table functions
 
 function dothetruth()
 {
@@ -220,8 +364,92 @@ function dothetruth()
     // input
     document.getElementById("NORTable").innerHTML = html;
 
+
+     // the XOR table
+     var basicXor = basicTruth;
+     for (var i = 0; i < basicTruth.length; i++)
+     {
+         if (basicTruth[i][0] == basicTruth[i][1])
+         {
+             basicXor[i][2] = "F";
+         }
+         else
+         {
+             basicXor[i][2] = "T";
+         }
+     }
+     
+     // draw the table
+     html = "<table><tr><th>p</th><th>q</th><th>p&#8891;q</th></tr><tr>";
+   
+     // loop through each row
+     for (var i = 0; i < basicXor.length; i++) {
+       for (var j = 0; j < 3; j++)
+       {
+           html += "<td>" + basicXor[i][j] + "</td>"
+       }
+         html += "</tr><tr>";
+ 
+     }
+     html += "</tr></table>";
+   
+     // input
+     document.getElementById("XORTable").innerHTML = html;
+
   }
 
+  // Random Values functions
+
+  function randomize ()
+  {
+      var range = document.getElementById("randomRange").value;
+      var sample = document.getElementById("randomSample").value;
+      var results = [];
+
+      for (var i = 0; i < sample; i++)
+      {
+        results[i] = Math.ceil(Math.random() * range);
+      }
+
+      //create a range axis
+
+      var xvalues = [];
+      for (var i = 0; i < range; i++)
+      {
+          xvalues[i] = i + 1;
+      }
+
+      // generate values
+
+      var yvalues = [];
+
+      for (var i = 0; i < range; i++)
+        {
+            var z = 0;
+
+            for (var j = 0; j < results.length; j++)
+            {
+                if (results[j] == i)
+                {
+                    z++;
+                }
+            }
+            yvalues[i] = z;
+        }
+
+
+      var data = [
+          {
+           x:  xvalues,
+           y: yvalues,
+           type: 'bar'
+          }
+        ];
+           
+    Plotly.newPlot('randomResult', data, {staticPlot: true});
+  }
+
+  // Custom functions
 
   function dice(range)
   {

@@ -2,11 +2,12 @@
 
 <head>
     <script src="ProjectJS.js"></script>
+    <script src="plotly-latest.min.js"></script>
     <link rel="stylesheet" type="text/css" href="ProjectCSS.css">
 </head>
 
 <body>
-
+<div id="pageContainer">
     <div id="header">Math Tool</div>
 
     <div class="wrapper">
@@ -28,7 +29,7 @@
                             <p>Change from one number system to another.</p>
 
 
-                            <form id="convertForm" action="convertIt">
+                            <form id="convertForm">
                                 Input value:
                                 <input type="text" name="value" id="convertSource">
                                 From:
@@ -46,7 +47,7 @@
                                     <option value="HEX">Hexadecimal</option>
                                 </select>
                             </form>
-                            <button onclick="conversionButton()">Calculate</button>
+                            <button onclick="conversionButton();">Calculate</button>
                             <div id="convertResult"></div>
 
                 </div>
@@ -54,11 +55,33 @@
                 <div id="NumberOutput" class="tabcontent">
                             <h3>NumberOutput</h3>
                             <p>Show output tables for number systems.</p>
+                            <button onclick="outputTable();">Generate table</button>
+                            <button onclick="clearTable();">Clear table</button>
+                            <div id="outputTable"></div>
                 </div>
                         
                 <div id="Combinatorics" class="tabcontent">
                             <h3>Combinatorics</h3>
                             <p>Create combinations and permutations.</p>
+
+                            <form id="combinatoricsForm">
+                                Size of range:
+                                <input type="number" name="range" id="comboRange" value="1">
+                                Size of sample:
+                                <input type="number" name="sample" id="comboSample" value="1">
+                                Type:
+                                <select name="fromNum" id ="CorP" onchange="disableP();">
+                                    <option value="permNo">Combination</option>
+                                    <option value="permYes">Permutation</option>
+                                </select>
+                                
+                            </form>
+                            <form id="permChecked">
+                                <input type="radio" name="permutation" value="repeat" disabled checked>Repeats allowed<br>
+                                <input type="radio" name="permutation" value="norepeat" disabled>Repeats not allowed<br>                               
+                            </form>
+                            <button onclick="comboButton();">Calculate</button>
+                            <div id="comboResult"></div>
                 </div>
 
                                         
@@ -77,6 +100,15 @@
                 <div id="Random Values" class="tabcontent">
                     <h3>Random Values</h3>
                     <p>This will be random.</p>
+
+                    <form id="randomizer">
+                        Range: 
+                        <input type="number" id="randomRange">
+                        Sample size: 
+                        <input type="number" id="randomSample">
+                    </form>
+                    <button onclick="randomize();">Randomize!</button>
+                    <div id="randomResult"></div>
                 </div>
 
                                 
@@ -113,7 +145,11 @@
 
         </div>
 
-
+<div id="footer">
+    <div id="credit">Page created by Eleonoora Kalliokoski for "ID00BO85-3003_Developer Basic Skills DIN19SP".</div>
+        <div id="licenseNote">This page uses the Plotly.js graphing library, which is <a href="https://github.com/plotly/plotly.js/blob/master/LICENSE">licensed under the MIT license.</a></div>
+</div>
+</div>
 </body>
 
 </html>
