@@ -64,13 +64,10 @@
                                         
                 <div id="Truth Tables" class="tabcontent">
                     <h3>Truth Tables</h3>
-                    <p>This will show the truth. With CSS Grid maybe?</p>
                     <button id="truthify" onclick="dothetruth();">Truthify!</button>
 
-                    <div id="NEGTable"></div>
-                    <div id="ANDTable">
-                    </div>
-
+                    <div id="NOTTable"></div>
+                    <div id="ANDTable"></div>
                     <div id="ORTable"></div>
                     <div id="NORTable"></div>
                     <div id="XORTable"></div>
@@ -84,8 +81,33 @@
 
                                 
                 <div id="Custom" class="tabcontent">
-                    <h3>Custom</h3>
-                    <p>Here I will make it up.</p>
+                    <h3>Roll a die!</h3>
+                    <div id="diebuttons">
+                        <div>
+                        <table>
+                            <tr>
+                                    <td><button onclick="dice(4);">d4</button></td>
+                                    <td><button onclick="dice(6);">d6</button></td>
+                                    <td><button onclick="dice(8);">d8</button></td>
+                                    <td><button onclick="dice(10);">d10</button></td>
+                                    <td><button onclick="dice(12);">d12</button></td>
+                                    <td><button onclick="dice(20);">d20</button></td>
+                                    <td><button onclick="dice(100);">d100</button></td>
+                            </tr>
+                            <tr style="height: 22px;">
+                                <td id="d4"></td>
+                                <td id="d6"></td>
+                                <td id="d8"></td>
+                                <td id="d10"></td>
+                                <td id="d12"></td>
+                                <td id="d20"></td>
+                                <td id="d100"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-top:20px;"><button onclick="cleardice();">Clear all</button></div>
+                    
+                </div>
                 </div>
             </div>
 
