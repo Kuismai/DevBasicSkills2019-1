@@ -12,119 +12,135 @@
 
     <div class="wrapper">
 
-
         <div class="tab">
             <button class="tablinks" onclick="openTab('Conversion')" id="defaultOpen">Conversion</button>
-            <button class="tablinks" onclick="openTab('NumberOutput')">NumberOutput</button>
+            <button class="tablinks" onclick="openTab('NumberOutput')">Number Output</button>
             <button class="tablinks" onclick="openTab('Combinatorics')">Combinatorics</button>
             <button class="tablinks" onclick="openTab('Truth Tables')">Truth Tables</button>
             <button class="tablinks" onclick="openTab('Random Values')">Random Values</button>
-            <button class="tablinks" onclick="openTab('Custom')">Custom</button>
+            <button class="tablinks" onclick="openTab('Custom')">Roll Dice</button>
         </div>
 
             <div class="wrapper" id="mainspace">
                 <div id="Conversion" class="tabcontent">
                             
-                            <h3>Conversion</h3>
-                            <p>Change from one number system to another.</p>
+                    <h3>Conversion</h3>
+                    <p>Change from one number system to another.</p>
 
 
-                            <form id="convertForm">
-                                Input value:
-                                <input type="text" name="value" id="convertSource">
-                                From:
-                                <select name="fromNum">
-                                    <option value="DEC">Decimal</option>
-                                    <option value="BIN">Binary</option>
-                                    <option value="OCT">Octal</option>
-                                    <option value="HEX">Hexadecimal</option>
-                                </select>
-                                To:
-                                <select name="toNum">
-                                    <option value="DEC">Decimal</option>
-                                    <option value="BIN">Binary</option>
-                                    <option value="OCT">Octal</option>
-                                    <option value="HEX">Hexadecimal</option>
-                                </select>
-                            </form>
-                            <button onclick="conversionButton();">Calculate</button>
-                            <div id="convertResult"></div>
-
-                </div>
-                        
-                <div id="NumberOutput" class="tabcontent">
-                            <h3>NumberOutput</h3>
-                            <p>Show output tables for number systems.</p>
-                            <button onclick="outputTable();">Generate table</button>
-                            <button onclick="clearTable();">Clear table</button>
-                            <div id="outputTable"></div>
-                </div>
-                        
-                <div id="Combinatorics" class="tabcontent">
-                            <h3>Combinatorics</h3>
-                            <p>Create combinations and permutations.</p>
-
-                            <form id="combinatoricsForm">
-                                Size of range:
-                                <input type="number" name="range" id="comboRange" value="1">
-                                Size of sample:
-                                <input type="number" name="sample" id="comboSample" value="1">
-                                Type:
-                                <select name="fromNum" id ="CorP" onchange="disableP();">
-                                    <option value="permNo">Combination</option>
-                                    <option value="permYes">Permutation</option>
-                                </select>
-                                
-                            </form>
-                            <form id="permChecked">
-                                <input type="radio" name="permutation" value="repeat" disabled checked>Repeats allowed<br>
-                                <input type="radio" name="permutation" value="norepeat" disabled>Repeats not allowed<br>                               
-                            </form>
-                            <button onclick="comboButton();">Calculate</button>
-                            <div id="comboResult"></div>
-                </div>
-
-                                        
-                <div id="Truth Tables" class="tabcontent">
-                    <h3>Truth Tables</h3>
-                    <button id="truthify" onclick="dothetruth();">Truthify!</button>
-
-                    <div id="NOTTable"></div>
-                    <div id="ANDTable"></div>
-                    <div id="ORTable"></div>
-                    <div id="NORTable"></div>
-                    <div id="XORTable"></div>
-                </div>
-
-                                        
-                <div id="Random Values" class="tabcontent">
-                    <h3>Random Values</h3>
-                    <p>This will be random.</p>
-
-                    <form id="randomizer">
-                        Range: 
-                        <input type="number" id="randomRange">
-                        Sample size: 
-                        <input type="number" id="randomSample">
+                    <form id="convertForm">
+                        Input value:
+                        <input type="text" name="value" id="convertSource">
+                        From:
+                        <select name="fromNum">
+                            <option value="DEC">Decimal</option>
+                            <option value="BIN">Binary</option>
+                            <option value="OCT">Octal</option>
+                            <option value="HEX">Hexadecimal</option>
+                        </select>
+                        To:
+                        <select name="toNum">
+                            <option value="DEC">Decimal</option>
+                            <option value="BIN">Binary</option>
+                            <option value="OCT">Octal</option>
+                            <option value="HEX">Hexadecimal</option>
+                        </select>
                     </form>
-                    <button onclick="randomize();">Randomize!</button>
-                    <div id="randomResult"></div>
+
+                    <button onclick="conversionButton();">Calculate</button>
+                    <div id="convertResult"></div>
+
+                </div>
+                        
+            <div id="NumberOutput" class="tabcontent">
+                <h3>Number Output</h3>
+                <p>Show output tables for number systems.</p>
+                    
+                <button onclick="outputTable();">Generate table</button>
+                <button onclick="clearTable();">Clear table</button>
+                            
+                <div id="tableWrapper">
+                    <div id="outputTable"></div>
                 </div>
 
+            </div>
+                        
+            <div id="Combinatorics" class="tabcontent">
+                <h3>Combinatorics</h3>
+                <p>Create combinations and permutations.</p>
+
+                <form id="combinatoricsForm">
+                    Size of range:
+                    <input type="number" name="range" id="comboRange" value="1">
+                    Size of sample:
+                    <input type="number" name="sample" id="comboSample" value="1">
+                    Type:
+                    <select name="fromNum" id ="CorP" onchange="disableP();">
+                        <option value="permNo">Combination</option>
+                        <option value="permYes">Permutation</option>
+                    </select>
                                 
-                <div id="Custom" class="tabcontent">
-                    <h3>Roll a die!</h3>
-                    <div id="diebuttons">
-                        <div>
+                </form>
+            
+                <form id="permChecked">
+                    <input type="radio" name="permutation" value="repeat" disabled checked>Repeats allowed<br>
+                    <input type="radio" name="permutation" value="norepeat" disabled>Repeats not allowed<br>                               
+                </form>
+            
+                <button onclick="comboButton();">Calculate</button>
+                
+                <div id="comboResult"></div>
+            
+            </div>
+
+                                        
+            <div id="Truth Tables" class="tabcontent">
+                <h3>Truth Tables</h3>
+                <button id="truthify" onclick="dothetruth();">Truthify!</button>
+
+                    <div id="tableContainer">
+                        <div id="NOTTable"></div>
+                        <div id="ANDTable"></div>
+                        <div id="ORTable"></div>
+                        <div id="NORTable"></div>
+                        <div id="XORTable"></div>
+                    </div>
+            
+            </div>
+
+                                        
+            <div id="Random Values" class="tabcontent">
+                <h3>Random Values</h3>
+                <p>This will be random.</p>
+
+                <form id="randomizer">
+                    Range: 
+                    <input type="number" id="randomRange">
+                    Sample size: 
+                    <input type="number" id="randomSample">
+                </form>
+            
+                <button onclick="randomize();">Randomize!</button>
+            
+                <div id="randomResult"></div>
+            
+            </div>
+
+                               
+            <div id="Custom" class="tabcontent">
+                <h3>Roll a die!</h3>
+             
+                <div id="diebuttons">
+                    <div>
                         <table>
                             <tr>
-                                    <td><button onclick="dice(4);">d4</button></td>
-                                    <td><button onclick="dice(6);">d6</button></td>
-                                    <td><button onclick="dice(8);">d8</button></td>
-                                    <td><button onclick="dice(10);">d10</button></td>
-                                    <td><button onclick="dice(12);">d12</button></td>
-                                    <td><button onclick="dice(20);">d20</button></td>
-                                    <td><button onclick="dice(100);">d100</button></td>
+                                <td><button onclick="dice(4);">d4</button></td>
+                                <td><button onclick="dice(6);">d6</button></td>
+                                <td><button onclick="dice(8);">d8</button></td>
+                                <td><button onclick="dice(10);">d10</button></td>
+                                <td><button onclick="dice(12);">d12</button></td>
+                                <td><button onclick="dice(20);">d20</button></td>
+                                <td><button onclick="dice(100);">d100</button></td>
                             </tr>
                             <tr style="height: 22px;">
                                 <td id="d4"></td>
@@ -140,16 +156,20 @@
                     <div style="margin-top:20px;"><button onclick="cleardice();">Clear all</button></div>
                     
                 </div>
-                </div>
+            
             </div>
-
+        
         </div>
 
-<div id="footer">
-    <div id="credit">Page created by Eleonoora Kalliokoski for "ID00BO85-3003_Developer Basic Skills DIN19SP".</div>
+    </div>
+
+    <div id="footer">
+        <div id="credit">Page created by Eleonoora Kalliokoski for "ID00BO85-3003_Developer Basic Skills DIN19SP".</div>
         <div id="licenseNote">This page uses the Plotly.js graphing library, which is <a href="https://github.com/plotly/plotly.js/blob/master/LICENSE">licensed under the MIT license.</a></div>
+    </div>
+
 </div>
-</div>
+
 </body>
 
 </html>
